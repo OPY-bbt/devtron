@@ -96,7 +96,7 @@
     </template>
 
     <template id="modules-view">
-      <div class="pane" data-pane="graph">
+      <div class="pane hidden" data-pane="graph">
         <header class="toolbar toolbar-header">
           <div class="toolbar-actions">
             <button data-field="loadButton" class="btn btn-default pull-right">
@@ -182,7 +182,7 @@
     </template>
 
     <template id="ipc-view">
-      <div class="pane hidden" data-pane="ipc">
+      <div class="pane" data-pane="ipc">
         <header class="toolbar toolbar-header">
           <div class="toolbar-actions">
             <div class="btn-group pull-right">
@@ -432,19 +432,19 @@
     <template id="sidebar-view">
       <div class="pane pane-sm sidebar">
         <ul class="list-group">
-          <li class="list-group-item active" data-field="requireLink" data-pane-link="graph">
+          <!-- <li class="list-group-item" data-field="requireLink" data-pane-link="graph">
             <div class="sidebar-icon sidebar-icon-graph"></div>
             Require Graph
           </li>
           <li class="list-group-item" data-field="eventsLink" data-pane-link="listeners">
             <div class="sidebar-icon sidebar-icon-events"></div>
             Event Listeners
-          </li>
-          <li class="list-group-item" data-field="ipcLink" data-pane-link="ipc">
+          </li> -->
+          <li class="list-group-item active" data-field="ipcLink" data-pane-link="ipc">
             <div class="sidebar-icon sidebar-icon-ipc"></div>
             IPC
           </li>
-          <li class="list-group-item" data-field="lintLink" data-pane-link="lint">
+          <!-- <li class="list-group-item" data-field="lintLink" data-pane-link="lint">
             <div class="sidebar-icon sidebar-icon-lint"></div>
             Lint
           </li>
@@ -455,7 +455,7 @@
           <li class="list-group-item" data-field="aboutLink" data-pane-link="about">
             <div class="sidebar-icon sidebar-icon-about"></div>
             About
-          </li>
+          </li> -->
         </ul>
       </div>
     </template>

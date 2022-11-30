@@ -1,28 +1,27 @@
 const electron = require('electron')
+const path = require('path');
 
-exports.install = () => {
-  if (process.type === 'renderer') {
-    console.log(`Installing Devtron from ${__dirname}`)
-    if (electron.remote.BrowserWindow.getDevToolsExtensions &&
-        electron.remote.BrowserWindow.getDevToolsExtensions().devtron) return true
-    return electron.remote.BrowserWindow.addDevToolsExtension(__dirname)
-  } else if (process.type === 'browser') {
-    console.log(`Installing Devtron from ${__dirname}`)
-    if (electron.BrowserWindow.getDevToolsExtensions &&
-        electron.BrowserWindow.getDevToolsExtensions().devtron) return true
-    return electron.BrowserWindow.addDevToolsExtension(__dirname)
+exports.install = (devtronPath, session) => {
+
+  session.on("extension-loaded", (...args) => {
+    console.log("extension-loaded", args);
+  });
+
+  if (process.type === 'browser') {
+    console.log(`Installing Devtron from ${devtronPath}`)
+    console.log(session.getAllExtensions());
+    if (session.getAllExtensions &&
+        session.getAllExtensions().find(v => v.name === "devtron")) return true;
+        console.log("loadExtension");
+    return session.loadExtension(devtronPath, { allowFileAccess: true });
   } else {
     throw new Error('Devtron can only be installed from an Electron process.')
   }
 }
 
-exports.uninstall = () => {
-  if (process.type === 'renderer') {
-    console.log(`Uninstalling Devtron from ${__dirname}`)
-    return electron.remote.BrowserWindow.removeDevToolsExtension('devtron')
-  } else if (process.type === 'browser') {
-    console.log(`Uninstalling Devtron from ${__dirname}`)
-    return electron.BrowserWindow.removeDevToolsExtension('devtron')
+exports.uninstall = (session) => {
+  if (process.type === 'browser') {
+    return session.removeExtension('devtron');
   } else {
     throw new Error('Devtron can only be uninstalled from an Electron process.')
   }

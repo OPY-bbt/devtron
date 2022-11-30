@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <title>devtron</title>
     <script>
-      chrome.devtools.panels.create('Devtron', 'devtron.png', 'static/index.html')
+      setTimeout(() => {
+        chrome.devtools.panels.create('Devtron', 'devtron.png', 'static/index.html')
+      }, 2000);
     </script>
   </head>
 </html>

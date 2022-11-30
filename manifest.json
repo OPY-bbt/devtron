@@ -1,11 +1,14 @@
 {
   "name": "devtron",
   "version": "1.0",
+  "manifest_version": 2,
   "devtools_page": "static/devtron.html",
   "content_scripts": [
     {
-      "matches": ["*"],
-      "js": ["out/browser-globals.js"]
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["out/browser-globals.js"],
+      "unsafe-inline": true
     }
-  ]
+  ],
+  "content_security_policy":"script-src 'self' object-src 'sha256-BgkW/shirEDkBd8QA5sTMpd2dVEuF+22yETvnPJzX+A='"
 }
